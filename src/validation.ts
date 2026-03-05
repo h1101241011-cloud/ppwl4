@@ -80,6 +80,14 @@ const app = new Elysia()
       }
     }
   )
+
+  app.get("/product", () => {
+    return {
+      id: 1,
+      name: "Laptop"
+    };
+  })
+
   .listen(3000);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
