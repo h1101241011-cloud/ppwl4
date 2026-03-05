@@ -59,7 +59,27 @@ const app = new Elysia()
       })
     }
   )
-
+  
+  app.get(
+    "/admin",
+    () => {
+      return {
+        stats: 99
+      };
+    },
+    {
+      beforeHandle({ headers, set }) {
+        const auth = headers.authorization;
+        if (auth !== "Bearer 123") {
+          set.status = 401;
+          return {
+            success: false,
+            message: "Unauthorized"
+          };
+        }
+      }
+    }
+  )
   .listen(3000);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
