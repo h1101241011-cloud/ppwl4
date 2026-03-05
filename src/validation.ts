@@ -80,12 +80,22 @@ const app = new Elysia()
     }
   )
 
-  app.get("/product", () => {
+  .get("/product", () => {
     return {
       id: 1,
       name: "Laptop"
-    };
+    }
   })
+
+
+  .onAfterHandle(({ response }) => {
+    return {
+      success: true,
+      Message: "data tersedia",
+      data: response
+    }
+  })
+
 
   app.post(
     "/login",
