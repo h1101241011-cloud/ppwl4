@@ -60,7 +60,7 @@ const app = new Elysia()
     }
   )
   
-  app.get(
+  .get(
     "/admin",
     () => {
       return {
