@@ -103,6 +103,23 @@ const app = new Elysia()
     }
   )
 
+  app.onError(({ code, set }) => {
+    if (code === "VALIDATION") {
+      set.status = 400;
+      return {
+        success: false,
+        error: "Validation Error"
+      };
+    }
+
+    // Default error
+    set.status = 500;
+    return {
+      success: false,
+      error: "Internal Server Error"
+    };
+  })
+  
   .listen(3000);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
