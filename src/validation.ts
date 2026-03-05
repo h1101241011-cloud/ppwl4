@@ -112,7 +112,7 @@ const app = new Elysia()
     }
   )
 
-  app.onError(({ code, set }) => {
+  .onError(({ code, set }) => {
     if (code === "VALIDATION") {
       set.status = 400;
       return {
