@@ -88,6 +88,21 @@ const app = new Elysia()
     };
   })
 
+  app.post(
+    "/login",
+    ({ body }) => {
+      return {
+        message: "Login berhasil"
+      };
+    },
+    {
+      body: t.Object({
+        email: t.String({ format: "email" }),
+        password: t.String({ minLength: 8 })
+      })
+    }
+  )
+
   .listen(3000);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
